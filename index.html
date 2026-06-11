@@ -52,6 +52,22 @@
 
     .page-title em { font-style: italic; }
 
+    .page-subtitle {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--c-mid);
+      font-style: italic;
+    }
+
+    .field-hint {
+      display: block;
+      margin-top: 4px;
+      font-size: 10px;
+      font-style: italic;
+      color: var(--c-light);
+      line-height: 1.4;
+    }
+
     .page-meta {
       display: flex;
       flex-direction: column;
@@ -371,6 +387,7 @@
     <div class="page-title">
       Шаблон старта<br><em>проекта</em>
     </div>
+    <div class="page-subtitle">Для тех, кто хочет начать проект с плана, а не с хаоса.</div>
     <div class="page-meta">
       <div class="page-brand">Реалити ПМ</div>
       <div class="page-version">версия 1.0</div>
@@ -397,7 +414,7 @@
       </div>
       <div class="field" style="margin-top:4px;">
         <label class="field-label">Цель проекта — одно предложение</label>
-        <input class="field-input" type="text" placeholder="Что именно достигаем и к какому сроку">
+        <input class="field-input" type="text" placeholder="Что именно достигаем и к какому сроку"><span class="field-hint">Что должно измениться после завершения проекта?</span>
       </div>
       <div class="field-row" style="margin-top:4px;">
         <div class="field">
@@ -406,7 +423,7 @@
         </div>
         <div class="field">
           <label class="field-label">Кто принимает решения</label>
-          <input class="field-input" type="text" placeholder="Имя, должность">
+          <input class="field-input" type="text" placeholder="Имя, должность"><span class="field-hint">Чьё мнение способно изменить план проекта за 5 минут.</span>
         </div>
       </div>
       <div class="field-row" style="margin-top:4px;">
@@ -416,7 +433,7 @@
         </div>
         <div class="field">
           <label class="field-label">Критерии успеха</label>
-          <input class="field-input" type="text" placeholder="Как поймём, что проект успешен">
+          <input class="field-input" type="text" placeholder="Как поймём, что проект успешен"><span class="field-hint">Как поймём, что проект удался? Ответ «все довольны» не считается.</span>
         </div>
       </div>
     </div>
@@ -505,6 +522,7 @@
         <div class="block-num">04</div>
         <div class="block-title">Риски</div>
       </div>
+      <div class="field-hint" style="margin-bottom:16px;">Подумайте о том, что уже вызывает беспокойство. Обычно именно там и живут будущие проблемы.</div>
       <table>
         <thead>
           <tr>
@@ -558,7 +576,7 @@
           <textarea class="field-textarea" placeholder="Конкретная задача, не процесс"></textarea>
         </div>
         <div class="field">
-          <label class="field-label">Definition of Done для первого этапа</label>
+          <label class="field-label">Как поймём, что первый этап завершён</label>
           <textarea class="field-textarea" placeholder="Как поймём, что первый этап завершён"></textarea>
         </div>
       </div>
