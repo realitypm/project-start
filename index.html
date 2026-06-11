@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Шаблон старта проекта — Реалити ПМ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --c-white: #FAFAF8;
+      --c-surface: #EFEDE8;
+      --c-dark: #1C1C1A;
+      --c-mid: #6B6B68;
+      --c-light: #A8A8A4;
+      --c-rule: rgba(28,28,26,0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #F0EEE9;
+      font-family: 'DM Sans', sans-serif;
+      padding: 40px 20px 60px;
+      min-height: 100vh;
+    }
+
+    .page {
+      width: 860px;
+      max-width: 100%;
+      margin: 0 auto;
+      background: var(--c-white);
+      border: 0.5px solid var(--c-rule);
+      padding: 52px 60px;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 0.5px solid var(--c-rule);
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--c-dark);
+      line-height: 1.2;
+    }
+
+    .page-title em { font-style: italic; }
+
+    .page-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      padding-top: 6px;
+    }
+
+    .page-brand {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--c-light);
+    }
+
+    .page-version {
+      font-size: 10px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--c-light);
+    }
+
+    .blocks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .block {
+      border: 0.5px solid var(--c-rule);
+      padding: 28px 32px;
+      border-radius: 1px;
+    }
+
+    .block-full { grid-column: 1 / -1; }
+    .block-surface { background: var(--c-surface); }
+
+    .block-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 0.5px solid var(--c-rule);
+    }
+
+    .block-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--c-light);
+      line-height: 1;
+      min-width: 24px;
+    }
+
+    .block-title {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--c-dark);
+    }
+
+    .field { margin-bottom: 16px; }
+    .field:last-child { margin-bottom: 0; }
+
+    .field-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--c-light);
+      margin-bottom: 7px;
+      display: block;
+    }
+
+    .field-input {
+      width: 100%;
+      background: var(--c-surface);
+      border: none;
+      border-bottom: 0.5px solid var(--c-rule);
+      padding: 9px 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--c-mid);
+      outline: none;
+      border-radius: 1px 1px 0 0;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .field-input:focus {
+      border-bottom-color: var(--c-dark);
+      color: var(--c-dark);
+      background: #ECEAE4;
+    }
+
+    .field-input::placeholder {
+      color: var(--c-light);
+      font-style: italic;
+    }
+
+    .field-textarea {
+      width: 100%;
+      background: var(--c-surface);
+      border: none;
+      border-bottom: 0.5px solid var(--c-rule);
+      padding: 9px 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--c-mid);
+      outline: none;
+      border-radius: 1px 1px 0 0;
+      resize: vertical;
+      min-height: 64px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .field-textarea:focus {
+      border-bottom-color: var(--c-dark);
+      color: var(--c-dark);
+      background: #ECEAE4;
+    }
+
+    .field-textarea::placeholder {
+      color: var(--c-light);
+      font-style: italic;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .approach-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--c-light);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .approach-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .approach-btn {
+      flex: 1;
+      padding: 10px 8px;
+      border: 0.5px solid var(--c-rule);
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--c-light);
+      cursor: pointer;
+      border-radius: 1px;
+      transition: all 0.2s;
+      text-align: center;
+      letter-spacing: 0.08em;
+    }
+
+    .approach-btn:hover {
+      border-color: var(--c-mid);
+      color: var(--c-mid);
+    }
+
+    .approach-btn.selected {
+      background: var(--c-dark);
+      border-color: var(--c-dark);
+      color: var(--c-white);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+    }
+
+    thead th {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--c-light);
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 0.5px solid var(--c-rule);
+      background: transparent;
+    }
+
+    tbody td {
+      padding: 0;
+      border-bottom: 0.5px solid var(--c-rule);
+    }
+
+    tbody td input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 10px 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--c-mid);
+      outline: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    tbody td input:focus {
+      color: var(--c-dark);
+      background: var(--c-surface);
+    }
+
+    tbody td input::placeholder {
+      color: var(--c-light);
+      font-style: italic;
+    }
+
+    .page-footer {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 0.5px solid var(--c-rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-note {
+      font-size: 10px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--c-light);
+    }
+
+    .footer-brand {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--c-light);
+    }
+
+    .print-btn {
+      display: block;
+      width: 860px;
+      max-width: 100%;
+      margin: 20px auto 0;
+      padding: 14px;
+      background: var(--c-dark);
+      border: none;
+      color: var(--c-white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 1px;
+      transition: opacity 0.2s;
+    }
+
+    .print-btn:hover { opacity: 0.85; }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .page { border: none; padding: 32px 40px; }
+      .print-btn { display: none; }
+      .approach-btn { border: 0.5px solid #ccc; }
+      .approach-btn.selected { background: #1C1C1A; color: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 20px 12px 40px; }
+      .page { padding: 32px 24px; }
+      .blocks-grid { grid-template-columns: 1fr; }
+      .block-full { grid-column: 1; }
+      .field-row { grid-template-columns: 1fr; }
+      .page-header { flex-direction: column; gap: 12px; }
+      .page-meta { align-items: flex-start; }
+      .print-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="page-header">
+    <div class="page-title">
+      Шаблон старта<br><em>проекта</em>
+    </div>
+    <div class="page-meta">
+      <div class="page-brand">Реалити ПМ</div>
+      <div class="page-version">версия 1.0</div>
+    </div>
+  </div>
+
+  <div class="blocks-grid">
+
+    <!-- БЛОК 1 - Инициация -->
+    <div class="block block-full">
+      <div class="block-header">
+        <div class="block-num">01</div>
+        <div class="block-title">Инициация</div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label">Название проекта</label>
+          <input class="field-input" type="text" placeholder="Краткое рабочее название">
+        </div>
+        <div class="field">
+          <label class="field-label">Дата старта</label>
+          <input class="field-input" type="text" placeholder="дд.мм.гггг">
+        </div>
+      </div>
+      <div class="field" style="margin-top:4px;">
+        <label class="field-label">Цель проекта — одно предложение</label>
+        <input class="field-input" type="text" placeholder="Что именно достигаем и к какому сроку">
+      </div>
+      <div class="field-row" style="margin-top:4px;">
+        <div class="field">
+          <label class="field-label">Заказчик / спонсор</label>
+          <input class="field-input" type="text" placeholder="Имя, должность">
+        </div>
+        <div class="field">
+          <label class="field-label">Кто принимает решения</label>
+          <input class="field-input" type="text" placeholder="Имя, должность">
+        </div>
+      </div>
+      <div class="field-row" style="margin-top:4px;">
+        <div class="field">
+          <label class="field-label">Бюджет</label>
+          <input class="field-input" type="text" placeholder="Сумма или диапазон">
+        </div>
+        <div class="field">
+          <label class="field-label">Критерии успеха</label>
+          <input class="field-input" type="text" placeholder="Как поймём, что проект успешен">
+        </div>
+      </div>
+    </div>
+
+    <!-- БЛОК 2 - Планирование -->
+    <div class="block">
+      <div class="block-header">
+        <div class="block-num">02</div>
+        <div class="block-title">Планирование</div>
+      </div>
+      <span class="approach-label">Подход к управлению</span>
+      <div class="approach-row">
+        <button class="approach-btn" onclick="selectApproach(this)">Waterfall</button>
+        <button class="approach-btn" onclick="selectApproach(this)">Agile</button>
+        <button class="approach-btn" onclick="selectApproach(this)">Hybrid</button>
+      </div>
+      <div class="field">
+        <label class="field-label">Ключевые фазы / спринты</label>
+        <textarea class="field-textarea" placeholder="Основные этапы или спринты с примерными сроками"></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label">Дедлайн проекта</label>
+        <input class="field-input" type="text" placeholder="дд.мм.гггг">
+      </div>
+      <div class="field">
+        <label class="field-label">Ограничения</label>
+        <input class="field-input" type="text" placeholder="Что зафиксировано как ограничение">
+      </div>
+      <div class="field">
+        <label class="field-label">Допущения</label>
+        <input class="field-input" type="text" placeholder="Что принято как допущение">
+      </div>
+    </div>
+
+    <!-- БЛОК 3 - Команда -->
+    <div class="block">
+      <div class="block-header">
+        <div class="block-num">03</div>
+        <div class="block-title">Команда</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:28%">Роль</th>
+            <th style="width:30%">Имя</th>
+            <th style="width:42%">Ответственность</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="PM"></td>
+            <td><input type="text" placeholder="Имя"></td>
+            <td><input type="text" placeholder="Зона ответственности"></td>
+          </tr>
+          <tr>
+            <td><input type="text" placeholder="Роль"></td>
+            <td><input type="text" placeholder="Имя"></td>
+            <td><input type="text" placeholder="Зона ответственности"></td>
+          </tr>
+          <tr>
+            <td><input type="text" placeholder="Роль"></td>
+            <td><input type="text" placeholder="Имя"></td>
+            <td><input type="text" placeholder="Зона ответственности"></td>
+          </tr>
+          <tr>
+            <td><input type="text" placeholder="Роль"></td>
+            <td><input type="text" placeholder="Имя"></td>
+            <td><input type="text" placeholder="Зона ответственности"></td>
+          </tr>
+          <tr>
+            <td><input type="text" placeholder="Роль"></td>
+            <td><input type="text" placeholder="Имя"></td>
+            <td><input type="text" placeholder="Зона ответственности"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="field" style="margin-top:16px;">
+        <label class="field-label">Формат коммуникации и частота встреч</label>
+        <input class="field-input" type="text" placeholder="Например: стендап пн/ср/пт, отчёт раз в неделю">
+      </div>
+    </div>
+
+    <!-- БЛОК 4 - Риски -->
+    <div class="block block-full">
+      <div class="block-header">
+        <div class="block-num">04</div>
+        <div class="block-title">Риски</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:34%">Риск</th>
+            <th style="width:16%">Вероятность</th>
+            <th style="width:16%">Влияние</th>
+            <th style="width:34%">План реагирования</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Описание риска"></td>
+            <td><input type="text" placeholder="В / С / Н"></td>
+            <td><input type="text" placeholder="В / С / Н"></td>
+            <td><input type="text" placeholder="Что делаем если риск реализовался"></td>
+          </tr>
+          <tr>
+            <td><input type="text" placeholder="Описание риска"></td>
+            <td><input type="text" placeholder="В / С / Н"></td>
+            <td><input type="text" placeholder="В / С / Н"></td>
+            <td><input type="text" placeholder="Что делаем если риск реализовался"></td>
+          </tr>
+          <tr>
+            <td><input type="text" placeholder="Описание риска"></td>
+            <td><input type="text" placeholder="В / С / Н"></td>
+            <td><input type="text" placeholder="В / С / Н"></td>
+            <td><input type="text" placeholder="Что делаем если риск реализовался"></td>
+          </tr>
+          <tr>
+            <td><input type="text" placeholder="Описание риска"></td>
+            <td><input type="text" placeholder="В / С / Н"></td>
+            <td><input type="text" placeholder="В / С / Н"></td>
+            <td><input type="text" placeholder="Что делаем если риск реализовался"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 10px; font-size: 10px; font-weight: 300; font-style: italic; color: var(--c-light);">
+        В — высокая/высокое, С — средняя/среднее, Н — низкая/низкое
+      </div>
+    </div>
+
+    <!-- БЛОК 5 - Первый шаг -->
+    <div class="block block-full block-surface">
+      <div class="block-header">
+        <div class="block-num">05</div>
+        <div class="block-title">Первый шаг</div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label">Приоритет №1 — что делаем на этой неделе</label>
+          <textarea class="field-textarea" placeholder="Конкретная задача, не процесс"></textarea>
+        </div>
+        <div class="field">
+          <label class="field-label">Definition of Done для первого этапа</label>
+          <textarea class="field-textarea" placeholder="Как поймём, что первый этап завершён"></textarea>
+        </div>
+      </div>
+      <div class="field-row" style="margin-top:4px;">
+        <div class="field">
+          <label class="field-label">Первый чекпоинт</label>
+          <input class="field-input" type="text" placeholder="дд.мм.гггг — что проверяем">
+        </div>
+        <div class="field">
+          <label class="field-label">Резюме встречи отправить до</label>
+          <input class="field-input" type="text" placeholder="дд.мм.гггг чч:мм">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-note">Шаблон является живым документом и обновляется по мере развития проекта.</div>
+    <div class="footer-brand">Реалити ПМ</div>
+  </div>
+
+</div>
+
+<div style="display:flex;gap:12px;width:860px;max-width:100%;margin:20px auto 0;">
+<button class="print-btn" onclick="window.print()" style="flex:2;">Распечатать / Сохранить как PDF</button>
+<button class="print-btn" onclick="resetForm()" style="flex:1;background:transparent;border:0.5px solid #1C1C1A;color:#1C1C1A;">Сбросить поля</button>
+</div>
+
+<script>
+  function selectApproach(btn) {
+    const btns = btn.parentElement.querySelectorAll('.approach-btn');
+    btns.forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  }
+</script>
+<script>
+  function resetForm() {
+    if (!confirm("Сбросить все заполненные поля?")) return;
+    document.querySelectorAll("input[type=text], textarea").forEach(el => el.value = "");
+    document.querySelectorAll(".approach-btn").forEach(btn => btn.classList.remove("selected"));
+  }
+</script>
+
+</body>
+</html>
