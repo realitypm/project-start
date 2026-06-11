@@ -351,15 +351,35 @@
       .block-full { page-break-inside: avoid; }
     }
 
-    @media (max-width: 640px) {
-      body { padding: 20px 12px 40px; }
-      .page { padding: 32px 24px; }
-      .blocks-grid { grid-template-columns: 1fr; }
+    @media (max-width: 768px) {
+      body { padding: 16px 10px 40px; }
+      .page { padding: 24px 18px; }
+      .blocks-grid { grid-template-columns: 1fr; gap: 14px; }
       .block-full { grid-column: 1; }
-      .field-row { grid-template-columns: 1fr; }
-      .page-header { flex-direction: column; gap: 12px; }
+      .block { padding: 20px 18px; }
+      .field-row { grid-template-columns: 1fr; gap: 10px; }
+      .page-header { flex-direction: column; gap: 10px; }
       .page-meta { align-items: flex-start; }
+      .page-title { font-size: 26px; }
       .print-btn { width: 100%; }
+      table { font-size: 11px; }
+      thead th { font-size: 8px; padding: 6px 6px; }
+      tbody td input { padding: 8px 6px; font-size: 11px; }
+      .field-input, .field-textarea { font-size: 12px; padding: 8px 10px; }
+      .approach-btn { font-size: 10px; padding: 8px 4px; }
+      .page-footer { flex-direction: column; gap: 8px; align-items: flex-start; }
+      .footer-note { font-size: 9px; }
+    }
+
+    @media (max-width: 400px) {
+      body { padding: 10px 8px 32px; }
+      .page { padding: 20px 14px; }
+      .page-title { font-size: 22px; }
+      .block { padding: 16px 14px; }
+      .block-num { font-size: 18px; }
+      .block-title { font-size: 9px; }
+      .approach-row { flex-direction: column; gap: 6px; }
+      .approach-btn { width: 100%; }
     }
   </style>
 </head>
